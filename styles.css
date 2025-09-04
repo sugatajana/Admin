@@ -436,6 +436,12 @@ section {
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #cbd5e1 transparent;
+    transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+.sidebar.collapsed + section {
+    margin-left: 4.25rem;
+    width: calc(100% - 4.25rem);
 }
 
 .content {
