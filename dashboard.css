@@ -1,0 +1,117 @@
+/* Dashboard Specific Styles */
+
+/* Dashboard Widgets */
+.dashboard-widgets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.widget {
+    flex: 1 1 calc(25% - 1rem);
+    max-width: calc(25% - 1rem);
+    background-color: var(--white-color);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.widget:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.widget h3 {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+}
+
+.widget-value {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+/* Chart Section */
+.chart-section {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: var(--white-color);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+}
+
+.chart-section h3 {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-weight: 300;
+}
+
+/* Table Section */
+.table-section {
+    margin-top: 2rem;
+    min-width: 100%;
+}
+
+.table-section h3 {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-weight: 300;
+}
+
+.table-section table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--white-color);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.table-section th, .table-section td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.table-section th {
+    background-color: var(--secondary-color);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.table-section tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+/* Status Labels */
+.status {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.status.confirmed {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.status.pending {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.status.cancelled {
+    background-color: #fee2e2;
+    color: #991b1b;
+}

@@ -79,3 +79,36 @@ document.querySelectorAll('.submenu-toggle').forEach(function(toggle) {
         this.setAttribute('aria-expanded', String(parent.classList.contains('open')));
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.querySelector('.sidebar');
+    const toggleButton = document.querySelector('.sidebar-toggle');
+
+    toggleButton.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+        const isCollapsed = sidebar.classList.contains('collapsed');
+        toggleButton.setAttribute('aria-expanded', !isCollapsed);
+    });
+
+    // Ensure submenu hover works when sidebar is collapsed
+    const submenuItems = document.querySelectorAll('.has-submenu');
+    submenuItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            if (sidebar.classList.contains('collapsed')) {
+                const submenu = item.querySelector('.submenu');
+                if (submenu) {
+                    submenu.style.display = 'block';
+                }
+            }
+        });
+
+        item.addEventListener('mouseleave', () => {
+            if (sidebar.classList.contains('collapsed')) {
+                const submenu = item.querySelector('.submenu');
+                if (submenu) {
+                    submenu.style.display = 'none';
+                }
+            }
+        });
+    });
+});

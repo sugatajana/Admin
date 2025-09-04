@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css"
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -47,6 +48,9 @@
 
     <main class="container">
         <aside class="sidebar">
+            <button class="sidebar-toggle" aria-label="Toggle Sidebar">
+                <span class="hamburger-icon"></span>
+            </button>
             <ul>
                 <li class="has-submenu">
                     <button class="submenu-toggle" aria-expanded="false" aria-controls="submenu-dashboard">
@@ -189,18 +193,93 @@
                     <ul class="submenu" id="submenu-settings" aria-hidden="true">
                         <li><a href="#profile-settings"><span class="submenu-text">Profile Settings</span></a></li>
                         <li><a href="#system-settings"><span class="submenu-text">System Settings</span></a></li>
-                        <li><a href="#notification-settings"><span class="submenu-text">Notification Settings</span></a></li>
+                        <li><a href="#notification-settings"><span class="submenu-text">Notification Settings</span></a>
+                        </li>
                     </ul>
                 </li>
                 <li><a href="#help"><img src="assets/icons/help.svg" alt="Help" /> Help</a></li>
             </ul>
         </aside>
 
-        <!-- <section class="content">
+        <section class="content">
             <h2>Welcome to the Admin Dashboard</h2>
-            <p>This is a simple admin dashboard layout using HTML and CSS.</p>
-             Add more content here as needed -->
-        <!-- </section> -->
+            <p>Select an option from the sidebar to get started.</p>
+            <!-- Main content goes here -->
+            <div class="dashboard-widgets">
+                <div class="widget">
+                    <h3>Total Bookings</h3>
+                    <p class="widget-value">1,234</p>
+                </div>
+                <div class="widget">
+                    <h3>Available Rooms</h3>
+                    <p class="widget-value">56</p>
+                </div>
+                <div class="widget">
+                    <h3>Pending Orders</h3>
+                    <p class="widget-value">23</p>
+                </div>
+                <div class="widget">
+                    <h3>New Customers</h3>
+                    <p class="widget-value">89</p>
+                </div>
+            </div>
+            <!-- Add more dashboard content as needed -->
+            <!-- Example chart section -->
+            <div class="chart-section">
+                <h3>Monthly Revenue</h3>
+                <canvas id="revenueChart"></canvas>
+            </div>
+            <div class="chart-section">
+                <h3>Room Occupancy</h3>
+                <canvas id="occupancyChart"></canvas>
+            </div>
+            <div class="chart-section">
+                <h3>Top Selling Menu Items</h3>
+                <canvas id="menuChart"></canvas>
+            </div>
+            <!-- Example table section -->
+            <div class="table-section">
+                <h3>Recent Bookings</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Customer Name</th>
+                            <th>Room Type</th>
+                            <th>Check-in Date</th>
+                            <th>Check-out Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#B1234</td>
+                            <td>John Doe</td>
+                            <td>Deluxe</td>
+                            <td>2024-10-01</td>
+                            <td>2024-10-05</td>
+                            <td><span class="status confirmed">Confirmed</span></td>
+                        </tr>
+                        <tr>
+                            <td>#B1235</td>
+                            <td>Jane Smith</td>
+                            <td>Standard</td>
+                            <td>2024-10-02</td>
+                            <td>2024-10-06</td>
+                            <td><span class="status pending">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>#B1236</td>
+                            <td>Mike Johnson</td>
+                            <td>Suite</td>
+                            <td>2024-10-03</td>
+                            <td>2024-10-07</td>
+                            <td><span class="status cancelled">Cancelled</span></td>
+                        </tr>
+                        <!-- More rows as needed -->
+                    </tbody>
+                </table>
+        </section>
     </main>
 
     <footer>

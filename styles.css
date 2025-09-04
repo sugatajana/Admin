@@ -250,7 +250,7 @@ footer {
     padding-bottom: var(--footer-height);
     padding-left: .25rem;
     padding-right: .25rem;
-    min-height: 100vh;
+    height: 100vh;
     box-sizing: border-box;
 }
 
@@ -270,6 +270,30 @@ footer {
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #cbd5e1 transparent;
+    transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+    width: 4rem;
+}
+
+.sidebar.collapsed ul li a {
+    justify-content: center;
+}
+
+.sidebar.collapsed .submenu {
+    display: none;
+}
+
+.sidebar.collapsed ul li:hover .submenu {
+    display: block;
+    position: absolute;
+    left: 4rem;
+    top: 0;
+    background-color: var(--white-color);
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    width: var(--sidebar-width);
 }
 
 .sidebar li {
@@ -288,12 +312,14 @@ footer {
     font-size: 1rem;
     font-weight: 500;
     text-decoration: none;
-    transition: background 0.3s cubic-bezier(.4,0,.2,1),
-        color 0.3s cubic-bezier(.4,0,.2,1),
-        transform 0.2s cubic-bezier(.4,0,.2,1),
-        box-shadow 0.2s cubic-bezier(.4,0,.2,1);
+    transition: background 0.3s cubic-bezier(.4, 0, .2, 1),
+        color 0.3s cubic-bezier(.4, 0, .2, 1),
+        transform 0.2s cubic-bezier(.4, 0, .2, 1),
+        box-shadow 0.2s cubic-bezier(.4, 0, .2, 1);
 }
-.sidebar li a:hover, .sidebar li a:focus {
+
+.sidebar li a:hover,
+.sidebar li a:focus {
     background: linear-gradient(135deg, #e0f7ff 0%, #d0eaff 100%);
     color: var(--text-color);
     border-radius: 0.5rem;
@@ -328,7 +354,7 @@ footer {
 
 .toggle-icon {
     margin-left: auto;
-    transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+    transition: transform 0.3s cubic-bezier(.4, 0, .2, 1);
     font-size: 1.25rem;
 }
 
@@ -371,10 +397,10 @@ footer {
     font-size: 1rem;
     font-weight: 500;
     text-decoration: none;
-    transition: background 0.3s cubic-bezier(.4,0,.2,1),
-        color 0.3s cubic-bezier(.4,0,.2,1),
-        transform 0.2s cubic-bezier(.4,0,.2,1),
-        box-shadow 0.2s cubic-bezier(.4,0,.2,1);
+    transition: background 0.3s cubic-bezier(.4, 0, .2, 1),
+        color 0.3s cubic-bezier(.4, 0, .2, 1),
+        transform 0.2s cubic-bezier(.4, 0, .2, 1),
+        box-shadow 0.2s cubic-bezier(.4, 0, .2, 1);
 }
 
 .submenu li a .submenu-text {
@@ -382,7 +408,8 @@ footer {
     display: inline-block;
 }
 
-.submenu li a:hover, .submenu li a:focus {
+.submenu li a:hover,
+.submenu li a:focus {
     background: linear-gradient(135deg, #e0f7ff 0%, #d0eaff 100%);
     color: var(--text-color);
     border-radius: 0.5rem;
@@ -391,10 +418,96 @@ footer {
     outline: none;
 }
 
-@media (max-width: 600px) {
-    .inner-footer {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
+section {
+    flex: 1;
+    margin-left: calc(var(--sidebar-width) + 0.25rem);
+    /* Increased spacing on the left */
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    min-height: calc(100vh - var(--header-height) - var(--footer-height) - 0.5rem);
+    box-sizing: border-box;
+    top: calc(var(--header-height) + 0.25rem);
+    display: flex;
+    width: calc(100% - var(--sidebar-width) - 0.5rem);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 2rem;
+    gap: 1rem;
+}
+
+.content h2 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+/* Collapsible Sidebar Styles */
+.sidebar {
+    width: var(--sidebar-width);
+    transition: width 0.3s ease;
+    /* overflow: hidden; */
+}
+
+.sidebar.collapsed {
+    width: 3rem;
+}
+
+.sidebar.collapsed ul li a {
+    justify-content: center;
+}
+
+.sidebar.collapsed .submenu {
+    display: none;
+}
+
+.sidebar.collapsed ul li:hover .submenu {
+    display: block;
+    position: absolute;
+    left: 4rem;
+    top: 0;
+    background-color: var(--white-color);
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    width: var(--sidebar-width);
+}
+
+.submenu {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.submenu:hover, .submenu:focus-within {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.sidebar-toggle .hamburger-icon {
+    width: 2rem;
+    height: 2rem;
+    background: url('./assets/icons/hamburger.svg') no-repeat center;
+    background-size: contain;
 }
