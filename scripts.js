@@ -105,25 +105,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Ensure submenu hover works only when sidebar is collapsed
     const submenuItems = document.querySelectorAll('.has-submenu');
-    submenuItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            if (sidebar.classList.contains('collapsed')) {
-                const submenu = item.querySelector('.submenu');
-                if (submenu) {
-                    submenu.style.display = 'block';
-                }
-            }
-        });
+    // submenuItems.forEach(item => {
+    //     item.addEventListener('mouseenter', () => {
+    //         if (sidebar.classList.contains('collapsed')) {
+    //             const submenu = item.querySelector('.submenu');
+    //             if (submenu) {
+    //                 submenu.style.display = 'block';
+    //             }
+    //         }
+    //     });
 
-        item.addEventListener('mouseleave', () => {
-            if (sidebar.classList.contains('collapsed')) {
-                const submenu = item.querySelector('.submenu');
-                if (submenu) {
-                    submenu.style.display = 'none';
-                }
-            }
-        });
-    });
+    //     item.addEventListener('mouseleave', () => {
+    //         if (sidebar.classList.contains('collapsed')) {
+    //             const submenu = item.querySelector('.submenu');
+    //             if (submenu) {
+    //                 submenu.style.display = 'none';
+    //             }
+    //         }
+    //     });
+    // });
 
     // Add custom tooltip for collapsed menu items
     submenuItems.forEach(item => {
@@ -145,4 +145,32 @@ document.addEventListener('DOMContentLoaded', () => {
             tooltip.style.display = 'none';
         });
     });
+
+    const nonSubmenuItems = document.querySelectorAll('.sidebar li:not(.has-submenu)');
+    nonSubmenuItems.forEach(item => {
+        // item.addEventListener('click', () => {
+        //     const link = item.querySelector('a');
+        //     if (link && link.href) {
+        //         window.location.href = link.href;
+        //     }
+        // });
+
+        const tooltip = document.createElement('div');
+        tooltip.className = 'tooltip';
+        tooltip.textContent = item.querySelector('a').getAttribute('data-menu'); // Example tooltip text
+        document.body.appendChild(tooltip);
+
+        item.addEventListener('mouseenter', (e) => {
+            if (sidebar.classList.contains('collapsed')) {
+                const rect = item.getBoundingClientRect();
+                tooltip.style.top = `${rect.top + window.scrollY}px`;
+                tooltip.style.left = `${rect.right + 2}px`;
+                tooltip.style.display = 'block';
+            }
+        });
+
+        item.addEventListener('mouseleave', () => {
+            tooltip.style.display = 'none';
+        });
+    }); 
 });

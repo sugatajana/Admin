@@ -328,6 +328,15 @@ footer {
     outline: none;
 }
 
+.sidebar.collapsed li a:hover,
+.sidebar.collapsed li a:focus {
+    background: none;
+    color: var(--text-primary);
+    transform: none;
+    box-shadow: none;
+    outline: none;
+}
+
 .has-submenu .submenu-toggle {
     background: none;
     border: none;
@@ -439,7 +448,7 @@ section {
     transition: margin-left 0.3s ease, width 0.3s ease;
 }
 
-.sidebar.collapsed + section {
+.sidebar.collapsed+section {
     margin-left: 4.25rem;
     width: calc(100% - 4.25rem);
 }
@@ -474,6 +483,7 @@ section {
 
 .sidebar.collapsed ul li {
     display: flex;
+    justify-content: center;
 }
 
 .sidebar.collapsed .submenu-toggle {
@@ -481,7 +491,7 @@ section {
     padding: 0.5rem 0;
 }
 
-.sidebar.collapsed .sidebar-toggle{
+.sidebar.collapsed .sidebar-toggle {
     padding: 0;
     text-align: center;
 }
@@ -497,7 +507,7 @@ section {
     display: none;
 }
 
-.sidebar.collapsed ul li:not(.has-submenu) a {
+.sidebar.collapsed ul li:not(.has-submenu) span {
     display: none;
 }
 
