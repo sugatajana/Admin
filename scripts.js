@@ -124,4 +124,25 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Add custom tooltip for collapsed menu items
+    submenuItems.forEach(item => {
+        const tooltip = document.createElement('div');
+        tooltip.className = 'tooltip';
+        tooltip.textContent = item.querySelector('button').getAttribute('data-menu'); // Example tooltip text
+        document.body.appendChild(tooltip);
+
+        item.addEventListener('mouseenter', (e) => {
+            if (sidebar.classList.contains('collapsed')) {
+                const rect = item.getBoundingClientRect();
+                tooltip.style.top = `${rect.top + window.scrollY}px`;
+                tooltip.style.left = `${rect.right + 2}px`;
+                tooltip.style.display = 'block';
+            }
+        });
+
+        item.addEventListener('mouseleave', () => {
+            tooltip.style.display = 'none';
+        });
+    });
 });
