@@ -585,3 +585,92 @@ section {
 .tooltip.visible {
     display: block;
 }
+
+/* Quick Menu Styles */
+.quick-menu {
+    position: fixed;
+    bottom: 4rem; /* Adjusted to move the button slightly upwards */
+    right: 2rem;
+    z-index: 1000;
+}
+
+.quick-menu-button {
+    width: 3.5rem;
+    height: 3.5rem;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--primary-color, rgba(0, 0, 0, 0.5)); /* Use application standard primary color */
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.quick-menu-button:hover {
+    background-color: var(--primary-hover-color, rgba(0, 0, 0, 0.7)); /* Use application standard hover color */
+}
+
+.quick-menu-list {
+    /* display: none; */
+    position: absolute;
+    bottom: 4rem;
+    right: 2.75rem;
+    background-color: var(--secondary-color, #fff); /* Use application standard secondary color */
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    min-width: 10rem;
+    list-style: none;
+    /* padding: 0.5rem 0; */
+    /* margin: 0; */
+    z-index: 1001;
+    opacity: 0;
+    /* transform: scale(0.95); */
+    transform: translateY(10px) scaleY(0.95);
+    transition: opacity 0.3s cubic-bezier(.4, 0, .2, 1), transform 0.3s cubic-bezier(.4, 0, .2, 1);
+    will-change: opacity, transform;
+}
+
+.quick-menu-list li {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0.25rem;
+    transition: background-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.2s cubic-bezier(.4, 0, .2, 1),
+        box-shadow 0.2s cubic-bezier(.4, 0, .2, 1);
+}
+
+.quick-menu-list li a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+}
+
+.quick-menu-list li:hover {
+    background: linear-gradient(135deg, #e0f7ff 0%, #d0eaff 100%);
+    color: var(--text-color);
+    border-radius: 0.5rem;
+    transform: scale(1.02);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+}
+
+.quick-menu-list li span {
+    display: inline-flex;
+    margin-right: 0.5rem;
+    gap: 0.5rem;
+}
+
+.quick-menu.open .quick-menu-list {
+    /* display: block; */
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+    pointer-events: auto;
+}

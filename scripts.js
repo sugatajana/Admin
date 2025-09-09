@@ -173,4 +173,24 @@ document.addEventListener('DOMContentLoaded', () => {
             tooltip.style.display = 'none';
         });
     }); 
+
+    const quickMenu = document.querySelector('.quick-menu');
+    const quickMenuButton = document.querySelector('.quick-menu-button');
+
+    quickMenuButton.addEventListener('click', () => {
+        const isOpen = quickMenu.classList.toggle('open');
+        quickMenu.setAttribute('aria-expanded', isOpen);
+        const quickMenuList = quickMenu.querySelector('.quick-menu-list');
+        quickMenuList.setAttribute('aria-hidden', !isOpen);
+    });
+
+    // Close quick menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!quickMenu.contains(e.target) && quickMenu.classList.contains('open')) {
+            quickMenu.classList.remove('open');
+            quickMenu.setAttribute('aria-expanded', false);
+            const quickMenuList = quickMenu.querySelector('.quick-menu-list');
+            quickMenuList.setAttribute('aria-hidden', true);
+        }
+    });
 });
