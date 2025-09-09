@@ -88,9 +88,22 @@ document.addEventListener('DOMContentLoaded', () => {
         sidebar.classList.toggle('collapsed');
         const isCollapsed = sidebar.classList.contains('collapsed');
         toggleButton.setAttribute('aria-expanded', !isCollapsed);
+
+        // Remove display: none from all submenus when sidebar is expanded
+        if (!isCollapsed) {
+            document.querySelectorAll('.submenu').forEach(submenu => {
+                submenu.style.display = '';
+            });
+
+            document.querySelectorAll('.has-submenu').forEach(item => {
+
+                item.classList.remove('open');
+                item.querySelector('.submenu-toggle').setAttribute('aria-expanded', 'false');
+            });
+        }
     });
 
-    // Ensure submenu hover works when sidebar is collapsed
+    // Ensure submenu hover works only when sidebar is collapsed
     const submenuItems = document.querySelectorAll('.has-submenu');
     submenuItems.forEach(item => {
         item.addEventListener('mouseenter', () => {

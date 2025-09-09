@@ -17,6 +17,7 @@
     padding: 1rem;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
 .widget:hover {
@@ -89,6 +90,7 @@
 
 .table-section tbody tr:hover {
     background-color: #f9fafb;
+    cursor: pointer;
 }
 
 /* Status Labels */
