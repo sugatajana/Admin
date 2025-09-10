@@ -7,7 +7,7 @@
     <title>Admin Dashboard</title>
     <!-- jQuery UI CSS for datepicker -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
-    
+
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="./section-styles/dashboard.css">
     <link rel="stylesheet" href="./section-styles/new-booking.css">
@@ -301,9 +301,9 @@
                     <div class="form-group">
                         <label for="dateofbirth">Date of Birth</label>
                         <!-- <div class="input-with-icon"> -->
-                            <input data-attr="date" type="text" id="dateofbirth" name="dateofbirth"
-                                placeholder="Date of Birth" required>
-                            <!-- <span class="input-icon">
+                        <input class="date" type="text" id="dateofbirth" name="dateofbirth"
+                            placeholder="Date of Birth" required>
+                        <!-- <span class="input-icon">
                                 <img src="./assets/icons/calendar.svg" alt="Calendar Icon">
                             </span> -->
                         <!-- </div> -->
@@ -343,12 +343,14 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="check-in-date">Check-in Date</label>
-                        <input data-attr="date" placeholder="Check-in Date" type="text" id="check-in-date" name="check-in-date" required>
+                        <input class="date" placeholder="Check-in Date" type="text" id="check-in-date"
+                            name="check-in-date" required>
                     </div>
 
                     <div class="form-group">
                         <label for="check-out-date">Check-out Date</label>
-                        <input data-attr="date" type="text" placeholder="Check-out Date" id="check-out-date" name="check-out-date" required>
+                        <input class="date" type="text" placeholder="Check-out Date" id="check-out-date"
+                            name="check-out-date" required>
                     </div>
 
                     <div class="form-group">
@@ -456,6 +458,7 @@
                             <option value="other">Other</option>
                         </select>
                     </div>
+
                     <div class="form-group">
                         <label for="payment-details">Card Details / Transaction ID</label>
                         <input type="text" id="payment-details" name="payment-details"
@@ -467,16 +470,21 @@
                 <!-- Special Requests -->
                 <!-- <div class="form-section"> -->
                 <!-- <h3>Special Requests</h3> -->
-                <div class="form-group">
-                    <label for="special-requests">Special Requests</label>
-                    <textarea id="special-requests" name="special-requests"
-                        placeholder="Enter any special requests"></textarea>
+                <div class="from-row">
+                    <div class="form-group">
+                        <label for="special-requests">Special Requests</label>
+                        <textarea id="special-requests" name="special-requests"
+                            placeholder="Enter any special requests"></textarea>
+                    </div>
                 </div>
+
                 <!-- </div> -->
 
                 <!-- Submit Button -->
-                <div class="form-section">
-                    <button type="submit" class="submit-button">Create Booking</button>
+                <div class="form-row">
+                    <!-- <div class="form-group"> -->
+                        <button type="submit" class="submit-button">Create Booking</button>
+                    <!-- </div> -->
                 </div>
             </form>
         </section>

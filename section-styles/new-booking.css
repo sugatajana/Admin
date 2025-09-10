@@ -27,6 +27,7 @@ h3 {
     flex: 1 1 calc(33.33% - 1rem);
     display: flex;
     flex-direction: column;
+    margin-bottom: 1.5rem; /* Add spacing between form elements */
 }
 
 label {
@@ -116,4 +117,18 @@ textarea {
     width: 1.5rem;
     height: 1.5rem;
     opacity: 0.6;
+}
+
+textarea {
+    min-height: 100px;
+    max-height: 300px;
+    line-height: 1.5;
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    resize: none;
 }

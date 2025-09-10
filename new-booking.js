@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize datepickers
-    const dateInput = document.querySelector('[data-attr="date"]');
+    const dateInput = document.querySelector('.date');
     $(dateInput).datepicker({
         dateFormat: 'dd-mm-yy',
         minDate: null,
@@ -67,13 +67,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-const scrollContainer = document.querySelector('.content');
-scrollContainer.addEventListener("scroll", () => {
-  const dateInput = document.querySelector('[data-attr="date"]');
-  if ($(dateInput).datepicker("widget").is(":visible")) {
-    $(dateInput).datepicker("hide");
-  }
-});
+// const scrollContainer = document.querySelector('.content');
+// scrollContainer.addEventListener("scroll", () => {
+//   const dateInput = document.querySelector('.date');
+//   if ($(dateInput).datepicker("widget").is(":visible")) {
+//     $(dateInput).datepicker("hide");
+//   }
+// });
 
+
+// window.addEventListener("scroll", () => console.log("Window scroll detected"));
+
+// document.querySelectorAll('*').forEach(el => {
+//   el.addEventListener("scroll", () => console.log("Scrolled:", el.className || el.id));
+// });
 
 
