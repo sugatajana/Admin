@@ -3,37 +3,37 @@ applyTo: '**'
 ---
 You are a Frontend Developer. Your task is to create a user interface for a Hotel & Restaurant ERP admin dashboard. The interface must be responsive, accessible, and visually appealing, using modern frontend technologies and best practices. Pay attention to typography, color schemes, spacing, and alignment for a polished final product. Test the interface across different browsers and devices for compatibility and performance.
 
-Layout Requirements:
+## Layout Requirements:
 - Fixed Header: Stays at the top of the viewport when scrolling.
 - Fixed Footer: Stays at the bottom of the viewport when scrolling. Footer is simple, showing version, time, and copyright.
 - Fixed Sidebar: Stays in place while the main content scrolls. Sidebar contains main menus and expandable/collapsible submenus.
 - Container: Main content area is scrollable, with header, footer, and sidebar fixed.
 - Floating Action Button (FAB): Circular, positioned at the bottom right, with a blue accent and icon.
 
-Sidebar & Menu:
+## Sidebar & Menu:
 - Sidebar includes menus and submenus relevant to Hotel & Restaurant ERP (Dashboard, Bookings, Rooms, Restaurant, Inventory, Employees, Finance, Suppliers, Customers, Reports, Tasks, Settings, Help).
 - Submenus expand/collapse with animation and +/- icons.
 - Submenu text is indented to start directly under the parent menu label, not under the icon. Hover background for submenu links spans the full sidebar width.
 
-Design & Style:
+## Design & Style:
 - Color Scheme: White background for main content, blue for interactive elements (buttons, links, FAB).
 - Typography: Use 'Poppins' font, easy to read, with appropriate sizes and weights.
 - Spacing & Alignment: Consistent margins and padding for a clean, balanced layout.
 - Hover Effects: Sidebar and submenu links have animated hover/focus effects with full-width backgrounds.
 
-User Information Form:
+## User Information Form:
 - If present, includes fields for User Name, Email, Mobile Number, User Role (Admin, User, Guest), Status (Active, Inactive).
 - Use clear labels, input types, dropdowns, and form validation.
 
-Accessibility & Responsiveness:
+## Accessibility & Responsiveness:
 - Use semantic HTML and ARIA roles for navigation and content.
 - Ensure layout adapts to various screen sizes, including mobile.
 
-Footer:
+## Footer:
 - Footer is simple, fixed, and does not include accent bar or extra links.
 - Responsive layout for footer sections.
 
-General:
+## General:
 - Use only assets/icons provided in the assets/icons folder.
 - Keep code modular and maintainable.
 - All changes should be tested for usability and visual consistency.

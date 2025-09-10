@@ -1,0 +1,119 @@
+h3 {
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.radio-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group {
+    flex: 1 1 calc(33.33% - 1rem);
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+input,
+select,
+textarea {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #007BFF;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+textarea {
+    resize: vertical;
+}
+
+.submit-button {
+    padding: 0.75rem;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+/* Updated style for horizontal row */
+.form-divider {
+    border: none;
+    border-top: 1px solid #ccc;
+    /* Light color to match other components */
+    margin: 1rem 0;
+}
+
+.mt-225 {
+    margin-top: 2.25rem;
+}
+
+/* For tablets */
+@media (max-width: 992px) {
+    .form-group {
+        flex: 1 1 calc(50% - 1rem);
+        /* 2 per row */
+    }
+}
+
+/* For mobile devices */
+@media (max-width: 600px) {
+    .form-group {
+        flex: 1 1 100%;
+        /* 1 per row */
+    }
+}
+
+/* Style for input with icon */
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon input {
+    padding-right: 2.5rem; /* Adjust padding to make space for the icon */
+}
+
+.input-with-icon .input-icon {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    opacity: 0.6;
+}

@@ -11,6 +11,7 @@
     --text-primary: #333;
     --text-secondary: #555;
     --text-color: #111827;
+    --text-muted: #6c757d;
     --white-color: #ffffff;
     --header-height: 4rem;
     --footer-height: 2.5rem;
@@ -25,6 +26,22 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     min-height: 100vh;
+}
+
+::placeholder {
+    color: #9ca3af;
+    opacity: 1;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+input, select, textarea, button {
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    accent-color: #2563eb;
+    cursor: pointer;
+    width: 1rem;
 }
 
 header {
