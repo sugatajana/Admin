@@ -674,11 +674,3 @@ section {
     transform: translateY(0) scaleY(1);
     pointer-events: auto;
 }
-
-/* Chart Section */
-.chart-container {
-    width: 100%;
-    overflow-x: auto;
-    height: 300px;
-    width: 300px;
-}

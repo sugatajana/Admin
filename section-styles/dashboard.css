@@ -45,6 +45,10 @@
     background-color: var(--white-color);
     border-radius: 0.5rem;
     box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: start;
 }
 
 .chart-section h3 {
@@ -52,6 +56,14 @@
     color: var(--text-primary);
     margin-bottom: 1rem;
     font-weight: 300;
+    /* text-align: center; */
+}
+
+.chart-container {
+    width: 100%;
+    max-width:100rem; /* ed to fit within Room Occupancy div */
+    height: 30rem; /* Adjusted height */
+    position: relative;
 }
 
 /* Table Section */

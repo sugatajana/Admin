@@ -94,7 +94,13 @@ var revenueChart = new Chart(revenueCtx, {
                     }
                 },
                 grid: {
-                    display: false,
+                    display: true,
+                    drawBorder: false,
+                    color: 'rgba(200, 200, 200, 0.2)',
+                    borderDash: [5, 5],
+                    lineWidth: 1,
+                    zeroLineWidth: 1,
+                    zeroLineColor: 'rgba(200, 200, 200, 0.5)'
                 },
                 title: {
                     display: true,
@@ -121,70 +127,94 @@ var revenueChart = new Chart(revenueCtx, {
     }
 });
 
-var occupancyChart = new Chart(roomOccupancyCtx, {
-    type: 'doughnut',
+const occupancyRate = [
+    { month: "Apr 2025", rate: 75 },
+    { month: "May 2025", rate: 80 },
+    { month: "June 2025", rate: 70 },
+    { month: "July 2025", rate: 85 },
+    { month: "Aug 2025", rate: 90 },
+    { month: "Sep 2025", rate: 95 }
+]
+
+const labels = occupancyRate.map(item => item.month);
+const data = occupancyRate.map(item => item.rate);
+
+const occupancyTrendChart = new Chart(roomOccupancyCtx, {
+    type: 'line', // Use 'area' by filling under the line if you prefer
     data: {
-        labels: ['Occupied', 'Vacant'],
+        labels: labels,
         datasets: [{
-            label: 'Room Occupancy',
-            data: [75, 25], // Example data
-            backgroundColor: [
-                'rgba(75, 192, 192, 0.6)',
-                'rgba(201, 203, 207, 0.6)'
-            ],
-            borderColor: [
-                'rgba(75, 192, 192, 1)',
-                'rgba(201, 203, 207, 1)'
-            ],
-            borderWidth: 1
+            label: 'Occupancy Rate (%)',
+            data: data,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)', // for area under line
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 2,
+            fill: false, // fill under the line
+            tension: 0.3, // smooth curve
+            pointRadius: 5,
+            pointHoverRadius: 7
         }]
     },
     options: {
         responsive: true,
-        maintainaspectRatio: false,
         layout: {
             padding: 10
         },
         plugins: {
-            legend: {
-                display: true,
-                position: 'top',
-            },
+            legend: { display: true, position: 'top' },
             title: {
                 display: true,
-                text: 'Room Occupancy Rate',
-                font: {
-                    size: 18,
-                    weight: 'bold'
-                }
+                text: 'Room Occupancy Trend (Last 6 Months)',
+                font: { size: 16, weight: 'bold' }
             },
             subtitle: {
                 display: true,
-                text: 'Current occupancy status of rooms',
-                font: {
-                    size: 14,
-                    weight: 'normal'
-                }
+                text: 'Monthly Room Occupancy Rates',
+                font: { size: 14, weight: 'normal' }
             },
             tooltip: {
                 callbacks: {
                     label: function (context) {
-                        const label = context.label || '';
-                        const value = context.raw || 0;
-                        return label + ': ' + value + '%';
+                        return context.dataset.label + ': ' + context.raw;
+                    }
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100,
+                ticks: {
+                    callback: function (value) { return value + '%'; }
+                },
+                grid: { 
+                    display: true,
+                    drawBorder: false,
+                    color: 'rgba(200, 200, 200, 0.2)',
+                    borderDash: [5, 5],
+                    lineWidth: 1,
+                    zeroLineWidth: 1,
+                    zeroLineColor: 'rgba(200, 200, 200, 0.5)' 
+                },
+                title: {
+                    display: true,
+                    text: 'Occupancy (%)',
+                    font: {
+                        size: 16,
+                        weight: 'bold'
+                    }
+                }
+            },
+            x: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Month',
+                    font: {
+                        size: 16, weight: 'bold'
                     }
                 },
-                backgroundColor: 'rgba(0,0,0,0.7)',
-                titleFont: {
-                    size: 16,
-                    weight: 'bold'
-                },
-                bodyFont: {
-                    size: 14,
-                    weight: 'normal'
-                },
-                padding: 10,
-                cornerRadius: 4
+                grid: { display: false }
             }
         }
     }

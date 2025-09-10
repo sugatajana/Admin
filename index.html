@@ -55,7 +55,11 @@
                 </span>
             </button>
             <ul>
-                <li class="has-submenu">
+                <li>
+                    <a data-menu="Dashboard" href="#dashboard"><img src="assets/icons/home.svg" alt="Dashboard" /><span
+                            class="submenu-text">Dashboard</span></a>
+                </li>
+                <!-- <li class="has-submenu">
                     <button class="submenu-toggle" aria-expanded="false" aria-controls="submenu-dashboard"
                         data-menu="Dashboard">
                         <span><img src="assets/icons/home.svg" alt="Dashboard" /></span>
@@ -67,7 +71,7 @@
                         <li><a href="#stats"><span class="submenu-text">Stats</span></a></li>
                         <li><a href="#reports"><span class="submenu-text">Reports</span></a></li>
                     </ul>
-                </li>
+                </li> -->
                 <li class="has-submenu">
                     <button class="submenu-toggle" aria-expanded="false" aria-controls="submenu-bookings"
                         data-menu="Bookings">
@@ -246,18 +250,20 @@
             <!-- Example chart section -->
             <div class="chart-section">
                 <h3>Monthly Revenue</h3>
-                <canvas id="revenueChart" width="250" height="100"></canvas>
+                <!-- <div class="chart-container"> -->
+                <canvas id="revenueChart"></canvas>
+                <!-- </div> -->
             </div>
             <div class="chart-section">
                 <h3>Room Occupancy</h3>
-                <div class="chart-container">
-                    <canvas id="occupancyChart"></canvas>
-                </div>
+                <!-- <div class="chart-container"> -->
+                <canvas id="occupancyChart"></canvas>
+                <!-- </div> -->
             </div>
-            <div class="chart-section">
+            <!-- <div class="chart-section">
                 <h3>Top Selling Menu Items</h3>
                 <canvas id="menuChart"></canvas>
-            </div>
+            </div> -->
             <!-- Example table section -->
             <div class="table-section">
                 <h3>Recent Bookings</h3>
