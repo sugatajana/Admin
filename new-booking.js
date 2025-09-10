@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize datepickers
-    const dateInput = document.querySelector('.date');
+    const dateInput = document.getElementById('dateofbirth');
     $(dateInput).datepicker({
         dateFormat: 'dd-mm-yy',
         minDate: null,
@@ -67,19 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// const scrollContainer = document.querySelector('.content');
-// scrollContainer.addEventListener("scroll", () => {
-//   const dateInput = document.querySelector('.date');
-//   if ($(dateInput).datepicker("widget").is(":visible")) {
-//     $(dateInput).datepicker("hide");
-//   }
-// });
-
-
-// window.addEventListener("scroll", () => console.log("Window scroll detected"));
-
-// document.querySelectorAll('*').forEach(el => {
-//   el.addEventListener("scroll", () => console.log("Scrolled:", el.className || el.id));
-// });
+const scrollContainer = document.querySelector('.content');
+scrollContainer.addEventListener("scroll", () => {
+    const dateInputs = document.querySelectorAll('.date');
+    dateInputs.forEach(dateInput => {
+        if ($(dateInput).datepicker("widget").is(":visible")) {
+            $(dateInput).datepicker("hide");
+        }
+    });
+});
 
 
