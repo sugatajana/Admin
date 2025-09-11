@@ -21,10 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
             $(checkOutInput).datepicker('option', 'minDate', minDate);
         }
     });
+    
     $(checkOutInput).datepicker({
         dateFormat: 'dd-mm-yy',
         minDate: 1
     });
+
+    $(checkInInput).datepicker('setDate', new Date(2025, 7, 1)); // Set default check-in date to September 1, 2025  
+    console.log($(checkInInput).datepicker('getDate'));
 
 
     //show business details if business customer is selected
