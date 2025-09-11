@@ -6,14 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <!-- <link rel="stylesheet" href="../css/dashboard.css"> -->
+     <link rel="stylesheet" href="../css/calendar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <!-- <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700&display=swap" rel="stylesheet"> -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- FullCalendar CSS and JS -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js'></script>
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.css' rel='stylesheet' />
 </head>
 
 <body>
@@ -56,8 +60,8 @@
             </button>
             <ul>
                 <li>
-                    <a data-menu="Dashboard" href="./index.html"><img src="../assets/icons/home.svg" alt="Dashboard" /><span
-                            class="submenu-text">Dashboard</span></a>
+                    <a data-menu="Dashboard" href="./index.html"><img src="../assets/icons/home.svg"
+                            alt="Dashboard" /><span class="submenu-text">Dashboard</span></a>
                 </li>
                 <li class="has-submenu">
                     <button class="submenu-toggle" aria-expanded="false" aria-controls="submenu-bookings"
@@ -212,87 +216,7 @@
         </aside>
 
         <section class="content">
-            <h2>Welcome to the Admin Dashboard</h2>
-            <p>Select an option from the sidebar to get started.</p>
-            <!-- Main content goes here -->
-            <div class="dashboard-widgets">
-                <div class="widget">
-                    <h3>Total Bookings</h3>
-                    <p class="widget-value">1,234</p>
-                </div>
-                <div class="widget">
-                    <h3>Available Rooms</h3>
-                    <p class="widget-value">56</p>
-                </div>
-                <div class="widget">
-                    <h3>Pending Orders</h3>
-                    <p class="widget-value">23</p>
-                </div>
-                <div class="widget">
-                    <h3>New Customers</h3>
-                    <p class="widget-value">89</p>
-                </div>
-            </div>
-            <!-- Add more dashboard content as needed -->
-            <!-- Example chart section -->
-            <div class="chart-section">
-                <h3>Monthly Revenue</h3>
-                <!-- <div class="chart-container"> -->
-                <canvas id="revenueChart"></canvas>
-                <!-- </div> -->
-            </div>
-            <div class="chart-section">
-                <h3>Room Occupancy</h3>
-                <!-- <div class="chart-container"> -->
-                <canvas id="occupancyChart"></canvas>
-                <!-- </div> -->
-            </div>
-            <!-- <div class="chart-section">
-                <h3>Top Selling Menu Items</h3>
-                <canvas id="menuChart"></canvas>
-            </div> -->
-            <!-- Example table section -->
-            <div class="table-section">
-                <h3>Recent Bookings</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Booking ID</th>
-                            <th>Customer Name</th>
-                            <th>Room Type</th>
-                            <th>Check-in Date</th>
-                            <th>Check-out Date</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#B1234</td>
-                            <td>John Doe</td>
-                            <td>Deluxe</td>
-                            <td>2024-10-01</td>
-                            <td>2024-10-05</td>
-                            <td><span class="status confirmed">Confirmed</span></td>
-                        </tr>
-                        <tr>
-                            <td>#B1235</td>
-                            <td>Jane Smith</td>
-                            <td>Standard</td>
-                            <td>2024-10-02</td>
-                            <td>2024-10-06</td>
-                            <td><span class="status pending">Pending</span></td>
-                        </tr>
-                        <tr>
-                            <td>#B1236</td>
-                            <td>Mike Johnson</td>
-                            <td>Suite</td>
-                            <td>2024-10-03</td>
-                            <td>2024-10-07</td>
-                            <td><span class="status cancelled">Cancelled</span></td>
-                        </tr>
-                        <!-- More rows as needed -->
-                    </tbody>
-                </table>
+            <div id='calendar'></div>
         </section>
     </main>
 
@@ -303,12 +227,45 @@
         </button>
         <ul class="quick-menu-list" aria-hidden="true">
             <!-- <li><span><img src="../../assets/icons/home.svg" alt="home"><a href="#dashboard">Dashboard</a></span></li> -->
-            <li><span><img src="../assets/icons/bookings.svg" alt="bookings"><a href="#bookings">Bookings</a></span></li>
+            <li><span><img src="../assets/icons/bookings.svg" alt="bookings"><a href="#bookings">Bookings</a></span>
+            </li>
             <li><span><img src="../assets/icons/customers.svg" alt="customers"><a href="#customers">Customers</a></span>
             </li>
             <li><span><img src="../assets/icons/rooms.svg" alt="rooms"><a href="#rooms">Rooms</a></span></li>
             <!-- <li><span><img src="../../assets/icons/inventory.svg" alt="inventory"><a href="#inventory">Inventory</a></span></li> -->
         </ul>
+    </div>
+
+    <!-- Quick Booking Modal -->
+    <div id="quick-booking-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Quick Booking</h2>
+            <form id="quick-booking-form">
+                <div class="form-group">
+                    <label for="customer-name">Customer Name</label>
+                    <input type="text" id="customer-name" name="customer-name" placeholder="Enter customer name" required>
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Mobile</label>
+                    <input type="tel" id="mobile" name="mobile" placeholder="Enter mobile number" required>
+                </div>
+                <div class="form-group">
+                    <label for="room-type">Room Type</label>
+                    <select id="room-type" name="room-type" required>
+                        <option value="">Select Room Type</option>
+                        <option value="single">Single</option>
+                        <option value="double">Double</option>
+                        <option value="suite">Suite</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="room-number">Room Number</label>
+                    <input type="text" id="room-number" name="room-number" placeholder="Enter room number" required>
+                </div>
+                <button type="submit" class="submit-button">Book Now</button>
+            </form>
+        </div>
     </div>
 
     <footer>
@@ -326,7 +283,7 @@
     </footer>
 
     <script src="../js/scripts.js"></script>
-    <script src="../js/chart.js"></script>
+    <script src="../js/calendar.js"></script>
 </body>
 
 </html>
