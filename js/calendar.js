@@ -41,6 +41,10 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('room-number').value = '';
             // console.log(new Date(info.startStr));
             $(checkInInput).datepicker('setDate', new Date(info.start));
+            // Disable previous dates in check-in datepicker
+            $(checkInInput).datepicker('option', 'minDate', new Date(info.start));
+            // Disable previous dates in check-out datepicker
+            $(checkOutInput).datepicker('option', 'minDate', new Date(info.start));
 
             let checkOutDate = new Date(info.end);
             checkOutDate.setDate(checkOutDate.getDate() - 1);
@@ -58,6 +62,12 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('room-type').value = info.event.extendedProps.roomType || '';
             document.getElementById('room-number').value = info.event.title;
             $(checkInInput).datepicker('setDate', new Date(info.event.start));
+            // Enable all dates in check-in datepicker
+            $(checkInInput).datepicker('option', 'minDate', null);
+
+            // Disable check-out dates before check-in date
+            $(checkOutInput).datepicker('option', 'minDate', new Date(info.event.start));
+
 
             if (info.event.end == null) {
                 let checkOutDate = new Date(info.event.start);
