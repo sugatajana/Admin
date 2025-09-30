@@ -18,6 +18,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
+        editable: true,
         selectable: true,
         select: function (info) {
 
@@ -76,6 +77,26 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
             // alert(`Booking Details:\nCustomer: ${event.extendedProps.customerName}\nMobile: ${event.extendedProps.mobileNumber}\nRoom: ${event.title}\nRoom Type: ${event.extendedProps.roomType}\nFrom: ${event.start.toLocaleString()}\nTo: ${event.end?.toLocaleString()}`);
+        },
+        eventDrop: function (info) {
+            const event = info.event;
+            OpenConfirmModal();
+
+            document.querySelector('.confirm-button').onclick = function() {
+                // Confirm the change
+                // You can update your data source here if needed
+                alert(`Event moved to:\nFrom: ${event.start.toLocaleString()}\nTo: ${event.end?.toLocaleString()}`);
+                CloseConfirmModal();
+            }
+
+            document.querySelector('.cancel-button').onclick = function() {
+                info.revert(); // Revert the event to its original position
+                CloseConfirmModal();
+            }
+
+            // Handle event drag-and-drop logic here
+            // For example, you can update the event's start and end dates in your data source
+            // alert(`Event moved to:\nFrom: ${event.start.toLocaleString()}\nTo: ${event.end?.toLocaleString()}`);
         }
 
     });
@@ -161,6 +182,17 @@ function OpenModal() {
 
 function CloseModal() {
     const modal = document.getElementById('quick-booking-modal');
+    modal.style.display = 'none';
+}
+
+function OpenConfirmModal() {
+    const modal = document.getElementById('confirm-modal');
+    modal.style.display = 'flex';
+    modal.scrollTop = 0;
+}
+
+function CloseConfirmModal() {
+    const modal = document.getElementById('confirm-modal');
     modal.style.display = 'none';
 }
 
