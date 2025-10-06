@@ -205,3 +205,17 @@ function CloseConfirmModal() {
     const modal = document.getElementById('confirm-modal');
     modal.style.display = 'none';
 }
+
+function showLoader() {
+    const loader = document.createElement('div');
+    loader.id = 'loader';
+    loader.innerHTML = `<img src="../assets/loader/infinite.svg" alt="Loading...">`;
+    document.body.appendChild(loader);
+}
+
+function hideLoader() {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.remove();
+    }
+}

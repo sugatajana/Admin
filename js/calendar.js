@@ -8,6 +8,15 @@ const events = [
 // Initialize datepickers and calendar when DOM is fully loaded
 window.addEventListener('DOMContentLoaded', (event) => {
 
+    // Show loader for dummy network call
+    showLoader();
+    setTimeout(() => {
+        hideLoader();
+    }, 2000);
+
+    // Business details toggle based on customer type
+    const customerTypeSelect = document.getElementById('customer-type');
+    const businessDetailsRow = document.getElementById('business-details-row');
     // Initialize datepickers
     const checkInInput = document.getElementById('check-in');
     const checkOutInput = document.getElementById('check-out');

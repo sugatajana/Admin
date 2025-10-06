@@ -1,6 +1,14 @@
 // JavaScript to handle Booking ID click and modal functionality
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    // show loader for dummy network call
+    showLoader();
+    setTimeout(() => {
+        hideLoader();
+    }, 2000);
+
+
     const modal = document.getElementById("booking-modal");
     const closeButton = modal.querySelector(".close-button");
 
@@ -129,7 +137,7 @@ document.querySelectorAll('.btn-edit').forEach(button => {
 document.querySelectorAll('.btn-delete').forEach(button => {
     button.addEventListener('click', (event) => {
         const bookingId = button.closest('tr').querySelector('.booking-id').getAttribute('data-id');
-        
+
         OpenConfirmModal();
 
         document.querySelector('.confirm-button').onclick = function () {
@@ -144,58 +152,3 @@ document.querySelectorAll('.btn-delete').forEach(button => {
 
     });
 });
-
-function showLoader() {
-    const loader = document.createElement('div');
-    loader.id = 'loader';
-    loader.innerHTML = `<img src="../assets/loader/infinite.svg" alt="Loading...">`;
-    document.body.appendChild(loader);
-}
-
-function hideLoader() {
-    const loader = document.getElementById('loader');
-    if (loader) {
-        loader.remove();
-    }
-}
-
-// Example usage during a network call
-async function fetchData(url) {
-    try {
-        showLoader();
-        const response = await fetch(url);
-        const data = await response.json();
-        console.log(data);
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    } finally {
-        hideLoader();
-    }
-}
-
-// Simulate a network call to demonstrate loader functionality
-function simulateNetworkCall() {
-    const simulateButton = document.createElement('button');
-    simulateButton.textContent = 'Simulate Network Call';
-    simulateButton.style.position = 'fixed';
-    simulateButton.style.bottom = '20px';
-    simulateButton.style.right = '20px';
-    simulateButton.style.padding = '10px 20px';
-    simulateButton.style.backgroundColor = '#007bff';
-    simulateButton.style.color = '#fff';
-    simulateButton.style.border = 'none';
-    simulateButton.style.borderRadius = '5px';
-    simulateButton.style.cursor = 'pointer';
-
-    simulateButton.addEventListener('click', async () => {
-        showLoader();
-        await new Promise(resolve => setTimeout(resolve, 3000)); // Simulate a 3-second network delay
-        hideLoader();
-        alert('Network call completed!');
-    });
-
-    document.body.appendChild(simulateButton);
-}
-
-// Initialize the simulation button
-simulateNetworkCall();
