@@ -18,6 +18,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
+        height:'auto',
+        contentHeight: 'auto',
         editable: true,
         selectable: true,
         select: function (info) {

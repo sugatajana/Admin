@@ -739,5 +739,9 @@ th {
 
 td {
     color: var(--text-secondary);
-    vertical-align: middle;    
+    vertical-align: middle;
+}
+
+.d-none {
+    display: none;
 }
