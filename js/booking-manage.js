@@ -8,12 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to open modal and populate details
     function openModal(bookingData) {
-        document.getElementById("modal-booking-id").textContent = bookingData.id;
-        document.getElementById("modal-customer-name").textContent = bookingData.customerName;
-        document.getElementById("modal-room").textContent = bookingData.room;
-        document.getElementById("modal-checkin").textContent = bookingData.checkin;
-        document.getElementById("modal-checkout").textContent = bookingData.checkout;
-        document.getElementById("modal-status").textContent = bookingData.status;
+        // document.getElementById("modal-booking-id").textContent = bookingData.id;
+        // document.getElementById("modal-customer-name").textContent = bookingData.customerName;
+        // document.getElementById("modal-room").textContent = bookingData.room;
+        // document.getElementById("modal-checkin").textContent = bookingData.checkin;
+        // document.getElementById("modal-checkout").textContent = bookingData.checkout;
+        // document.getElementById("modal-status").textContent = bookingData.status;
 
         modal.setAttribute("aria-hidden", "false");
         modal.style.display = "flex";
@@ -125,3 +125,77 @@ document.querySelectorAll('.btn-edit').forEach(button => {
         window.location.href = "booking.html?bookingId=" + bookingId;
     });
 });
+
+document.querySelectorAll('.btn-delete').forEach(button => {
+    button.addEventListener('click', (event) => {
+        const bookingId = button.closest('tr').querySelector('.booking-id').getAttribute('data-id');
+        
+        OpenConfirmModal();
+
+        document.querySelector('.confirm-button').onclick = function () {
+            console.log('Confirmed deletion of booking ID:', bookingId);
+            CloseConfirmModal();
+        };
+
+        document.querySelector('.cancel-button').onclick = function () {
+            CloseConfirmModal();
+        };
+
+
+    });
+});
+
+function showLoader() {
+    const loader = document.createElement('div');
+    loader.id = 'loader';
+    loader.innerHTML = `<img src="../assets/loader/infinite.svg" alt="Loading...">`;
+    document.body.appendChild(loader);
+}
+
+function hideLoader() {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.remove();
+    }
+}
+
+// Example usage during a network call
+async function fetchData(url) {
+    try {
+        showLoader();
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    } finally {
+        hideLoader();
+    }
+}
+
+// Simulate a network call to demonstrate loader functionality
+function simulateNetworkCall() {
+    const simulateButton = document.createElement('button');
+    simulateButton.textContent = 'Simulate Network Call';
+    simulateButton.style.position = 'fixed';
+    simulateButton.style.bottom = '20px';
+    simulateButton.style.right = '20px';
+    simulateButton.style.padding = '10px 20px';
+    simulateButton.style.backgroundColor = '#007bff';
+    simulateButton.style.color = '#fff';
+    simulateButton.style.border = 'none';
+    simulateButton.style.borderRadius = '5px';
+    simulateButton.style.cursor = 'pointer';
+
+    simulateButton.addEventListener('click', async () => {
+        showLoader();
+        await new Promise(resolve => setTimeout(resolve, 3000)); // Simulate a 3-second network delay
+        hideLoader();
+        alert('Network call completed!');
+    });
+
+    document.body.appendChild(simulateButton);
+}
+
+// Initialize the simulation button
+simulateNetworkCall();

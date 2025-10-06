@@ -383,7 +383,7 @@
     </main>
 
     <!-- Quick Menu Access Button -->
-    <div class="quick-menu">
+    <div class="quick-menu d-none">
         <button class="quick-menu-button" aria-label="Quick Menu">
             <img src="../assets/icons/menu.svg" alt="Quick Menu">
         </button>
@@ -416,40 +416,61 @@
     <div id="booking-modal" class="modal" aria-hidden="true">
         <div class="modal-content">
             <span class="close-button" aria-label="Close">&times;</span>
-            <h2>Booking Details</h2>
+            <h2>Booking Actions</h2>
             <div class="modal-body">
-                <div class="modal-row">
-                    <strong>Booking ID</strong>
-                    <span id="modal-booking-id"></span>
+                <div class="action-links">
+                    <div class="action-item">
+                        <img src="../assets/icons/finance.svg" alt="View Payment">
+                        <a href="#" id="view-payment-link">View Payment</a>
+                    </div>
+                    <div class="action-item">
+                        <img src="../assets/icons/invoice.svg" alt="Generate Invoice">
+                        <a href="#" id="generate-invoice-link">Generate Invoice</a>
+                    </div>
+                    <div class="action-item">
+                        <img src="../assets/icons/cancel.svg" alt="Cancel Booking">
+                        <a href="#" id="cancel-booking-link">Cancel Booking</a>
+                    </div>
+                    <div class="action-item">
+                        <img src="../assets/icons/refund.svg" alt="Refund Status">
+                        <a href="#" id="refund-status-link">Refund Status</a>
+                    </div>
+                    <div class="action-item">
+                        <img src="../assets/icons/email.svg" alt="Email Invoice">
+                        <a href="#" id="email-invoice-link">Email Invoice</a>
+                    </div>
+                    <div class="action-item">
+                        <img src="../assets/icons/print.svg" alt="Print Invoice">
+                        <a href="#" id="print-invoice-link">Print Invoice</a>
+                    </div>
+                    <div class="action-item">
+                        <img src="../assets/icons/reminder.svg" alt="Reminder Payment">
+                        <a href="#" id="payment-reminder-link">Payment Reminder</a>
+                    </div>
+                    <div class="action-item">
+                        <img src="../assets/icons/payment.svg" alt="Make Payment">
+                        <a href="#" id="make-payment-link">Make Payment</a>
+                    </div>
+                    
                 </div>
-                <div class="modal-row">
-                    <strong>Customer Name</strong>
-                    <span id="modal-customer-name"></span>
-                </div>
-                <div class="modal-row">
-                    <strong>Room</strong>
-                    <span id="modal-room"></span>
-                </div>
-                <div class="modal-row">
-                    <strong>Status</strong>
-                    <span id="modal-status"></span>
-                </div>
-                <div class="modal-row">
-                    <strong>Check-in</strong>
-                    <span id="modal-checkin"></span>
-                </div>
-                <div class="modal-row">
-                    <strong>Check-out</strong>
-                    <span id="modal-checkout"></span>
-                </div>
-                
-            </div>
-            <hr>
-            <div class="modal-footer">
-                <a href="#" id="view-more-link" target="_blank">View More</a>
             </div>
         </div>
     </div>
+
+    <!-- Confirmation Modal -->
+     <div id="confirm-modal" class="modal">
+        <div class="modal-content">
+            <!-- <span class="close-button">&times;</span> -->
+            <h2>Confirm Action</h2>
+            <p>Are you sure you want to proceed with this action?</p>
+            <div class="form-actions">
+                <button class="confirm-button">Yes</button>
+                <button class="cancel-button">No</button>
+            </div>
+        </div>
+     </div>
+
+    <!-- Loader will be dynamically added here by JavaScript -->
 
     <script src="../js/scripts.js"></script>
     <script src="../js/booking-manage.js"></script>

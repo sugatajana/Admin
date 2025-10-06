@@ -194,3 +194,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+function OpenConfirmModal() {
+    const modal = document.getElementById('confirm-modal');
+    modal.style.display = 'flex';
+    modal.scrollTop = 0;
+}
+
+function CloseConfirmModal() {
+    const modal = document.getElementById('confirm-modal');
+    modal.style.display = 'none';
+}
