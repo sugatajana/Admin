@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="../css/booking.css">
+    <link rel="stylesheet" href="../css/booking-manage.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -22,7 +22,6 @@
     <!-- jQuery and jQuery UI for datepicker -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
-
 </head>
 
 <body>
@@ -221,263 +220,165 @@
         </aside>
 
         <section class="content">
-            <h2>Create New Booking</h2>
-            <form class="new-booking-form">
-                <!-- Customer Type and Status -->
-                <!-- <div class="form-section"> -->
-                <!-- <h3>Customer Type and Status</h3> -->
-                <!-- <hr class="form-divider"> -->
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Customer Type</label>
-                        <div class="radio-group">
-                            <label><input type="radio" name="customer-type" value="individual" checked>
-                                Individual</label>
-                            <label><input type="radio" name="customer-type" value="business"> Business</label>
-                        </div>
+            <h2>Manage Bookings</h2>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <form class="filter-form">
+                    <label for="filter-date">From:</label>
+                    <input type="text" id="filter-date-from" name="filter-date-from">
+                    <label for="filter-date">To:</label>
+                    <input type="text" id="filter-date-to" name="filter-date-to">
+
+                    <label for="filter-status">Status:</label>
+                    <select id="filter-status" name="filter-status">
+                        <option value="">All</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="pending">Pending</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+
+                    <label for="filter-customer">Customer:</label>
+                    <input type="text" id="filter-customer" name="filter-customer" placeholder="Name or Mobile">
+
+                    <button type="submit" class="btn btn-primary">Filter</button>
+
+                    <!-- Sort Button Styled as Icon -->
+                    <div class="sort-dropdown">
+                        <button type="button" class="btn btn-sort" aria-label="Sort Options">
+                            <img src="../assets/icons/filter.svg" alt="Sort Icon">
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <p data-sort="name-asc">Name (A-Z)</p>
+                            </li>
+                            <li>
+                                <p data-sort="checkin-newest">Check-in Date (Newest First)</p>
+                            </li>
+                            <li>
+                                <p data-sort="checkin-oldest">Check-in Date (Oldest First)</p>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="form-group">
-                        <label>Customer Status</label>
-                        <div class="radio-group">
-                            <label><input type="radio" name="customer-status" value="new" checked> New Customer</label>
-                            <label><input type="radio" name="customer-status" value="existing"> Existing
-                                Customer</label>
-                        </div>
+                </form>
+            </div>
+
+            <!-- Booking Table -->
+            <div class="table-container">
+                <table class="booking-table">
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Customer Name</th>
+                            <th>Room</th>
+                            <th>Check-in</th>
+                            <th>Check-out</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a href="#" class="booking-id" data-id="1001">#1001</a></td>
+                            <td>John Doe</td>
+                            <td>Deluxe Room</td>
+                            <td>10-01-2025</td>
+                            <td>10-05-2025</td>
+                            <td><span class="status confirmed">Confirmed</span></td>
+                            <td>
+                                <button class="btn btn-edit">Edit</button>
+                                <button class="btn btn-delete">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="#" class="booking-id" data-id="1002">#1002</a></td>
+                            <td>Jane Smith</td>
+                            <td>Standard Room</td>
+                            <td>10-02-2025</td>
+                            <td>10-06-2025</td>
+                            <td><span class="status pending">Pending</span></td>
+                            <td>
+                                <button class="btn btn-edit">Edit</button>
+                                <button class="btn btn-delete">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="#" class="booking-id" data-id="1003">#1003</a></td>
+                            <td>Mike Johnson</td>
+                            <td>Suite</td>
+                            <td>10-03-2025</td>
+                            <td>10-07-2025</td>
+                            <td><span class="status cancelled">Cancelled</span></td>
+                            <td>
+                                <button class="btn btn-edit">Edit</button>
+                                <button class="btn btn-delete">Delete</button>
+                            </td>
+                        </tr>
+                        <!-- More rows as needed -->
+                        <tr>
+                            <td><a href="#" class="booking-id" data-id="1004">#1004</a></td>
+                            <td>Emily Davis</td>
+                            <td>Deluxe Room</td>
+                            <td>10-04-2025</td>
+                            <td>10-08-2025</td>
+                            <td><span class="status confirmed">Confirmed</span></td>
+                            <td>
+                                <button class="btn btn-edit">Edit</button>
+                                <button class="btn btn-delete">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="#" class="booking-id" data-id="1005">#1005</a></td>
+                            <td>David Wilson</td>
+                            <td>Standard Room</td>
+                            <td>10-05-2025</td>
+                            <td>10-09-2025</td>
+                            <td><span class="status pending">Pending</span></td>
+                            <td>
+                                <button class="btn btn-edit">Edit</button>
+                                <button class="btn btn-delete">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="#" class="booking-id" data-id="1006">#1006</a></td>
+                            <td>Sarah Brown</td>
+                            <td>Suite</td>
+                            <td>10-06-2025</td>
+                            <td>10-10-2025</td>
+                            <td><span class="status confirmed">Confirmed</span></td>
+                            <td>
+                                <button class="btn btn-edit">Edit</button>
+                                <button class="btn btn-delete">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="#" class="booking-id" data-id="1007">#1007</a></td>
+                            <td>Chris Lee</td>
+                            <td>Deluxe Room</td>
+                            <td>10-07-2025</td>
+                            <td>10-11-2025</td>
+                            <td><span class="status cancelled">Cancelled</span></td>
+                            <td>
+                                <button class="btn btn-edit">Edit</button>
+                                <button class="btn btn-delete">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Pagination Footer -->
+                <div class="table-footer">
+                    <div class="pagination">
+                        <button class="btn prev" disabled aria-label="Previous Page">
+                            <img src="../assets/icons/left-arrow.svg" alt="Previous">
+                        </button>
+                        <span class="page-info">Page <span id="current-page">1</span></span>
+                        <button class="btn next" aria-label="Next Page">
+                            <img src="../assets/icons/right-arrow.svg" alt="Next">
+                        </button>
                     </div>
                 </div>
-                <!-- </div> -->
-
-                <!-- Customer Info -->
-                <!-- <div class="form-section"> -->
-                <!-- <h3>Customer Info</h3> -->
-                <!-- <hr class="form-divider"> -->
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="customer-name">Customer Name</label>
-                        <input type="text" id="customer-name" name="customer-name" placeholder="Enter customer name"
-                            required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Enter email" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="mobile">Mobile</label>
-                        <input type="tel" id="mobile" name="mobile" placeholder="Enter mobile number" required>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" id="address" name="address" placeholder="Enter address" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="Nationality">Nationality</label>
-                        <input type="text" id="nationality" name="nationality" placeholder="Nationality" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="idnumber">ID / Passport Number</label>
-                        <input type="text" id="idnumber" name="idnumber" placeholder="ID / Passport Number" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="dateofbirth">Date of Birth</label>
-                        <!-- <div class="input-with-icon"> -->
-                        <input class="date" type="text" id="dateofbirth" name="dateofbirth" placeholder="Date of Birth"
-                            required>
-                        <!-- <span class="input-icon">
-                                <img src="../../assets/icons/calendar.svg" alt="Calendar Icon">
-                            </span> -->
-                        <!-- </div> -->
-                    </div>
-                    <div class="form-group">
-                        <label for="loyalityid">Loyality Membership / Reward Program ID</label>
-                        <input type="text" id="loyalityid" name="loyalityid" placeholder="Reward Program ID">
-                    </div>
-                    <div class="radio-group mt-225">
-                        <label><input type="radio" name="sex" value="male" checked> Male</label>
-                        <label><input type="radio" name="sex" value="female"> Female</label>
-                    </div>
-                </div>
-                <!-- </div> -->
-
-                <!-- Business Details (Conditional) -->
-                <div class="form-row business-details">
-                    <div class="form-group">
-                        <label for="gst-number">GST Number</label>
-                        <input type="text" id="gst-number" name="gst-number" placeholder="Enter GST number">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="business-name">Business Name</label>
-                        <input type="text" id="business-name" name="business-name" placeholder="Enter business name">
-                    </div>
-                    <div class="form-group">
-                        <label for="business-address">Business Address</label>
-                        <input type="text" id="business-address" name="business-address"
-                            placeholder="Enter business address">
-                    </div>
-                </div>
-
-                <!-- Booking Details -->
-                <!-- <div class="form-section"> -->
-                <!-- <h3>Booking Details</h3> -->
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="check-in-date">Check-in Date</label>
-                        <input class="date" placeholder="Check-in Date" type="text" id="check-in-date"
-                            name="check-in-date" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="check-out-date">Check-out Date</label>
-                        <input class="date" type="text" placeholder="Check-out Date" id="check-out-date"
-                            name="check-out-date" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="room-type">Room Type</label>
-                        <select id="room-type" name="room-type" required>
-                            <option value="">Select Room Type</option>
-                            <option value="single">Single</option>
-                            <option value="double">Double</option>
-                            <option value="suite">Suite</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="number-of-rooms">Number of Rooms</label>
-                        <input type="number" id="number-of-rooms" name="number-of-rooms" min="1" value="1" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="number-of-guests">Number of Guests</label>
-                        <input type="number" id="number-of-guests" name="number-of-guests" min="1" value="1" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="booking-source">Booking Source</label>
-                        <select id="booking-source" name="booking-source" required>
-                            <option value="">Select Booking Source</option>
-                            <option value="website">Website</option>
-                            <option value="phone">Phone</option>
-                            <option value="walk-in">Walk-in</option>
-                            <option value="third-party">Third-party</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="package">Package</label>
-                        <select id="booking-status" name="booking-status" required>
-                            <option value="">Select Package</option>
-                            <option value="standard">Standard</option>
-                            <option value="non-refund">Non-Refundable</option>
-                            <option value="with-Breakfast">Breakfast Included</option>
-                            <option value="all-inclusive">All-Inclusive</option>
-                            <option value="family">Family Package</option>
-                            <option value="honeymoon">Honeymoon Package</option>
-                            <option value="corporate">Corporate Package</option>
-                            <option value="long-stay">Long Stay</option>
-                            <option value="last-minute">Last Minute Deal</option>
-                            <option value="seasonal">Seasonal Offer</option>
-                            <option value="custom">Custom Package</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="roomNumber">Room Number</label>
-                        <select id="roomNumber" name="roomNumber" required>
-                            <option value="">Select Room Number</option>
-                            <option value="101">101</option>
-                            <option value="102">102</option>
-                            <option value="103">103</option>
-                            <option value="104">104</option>
-                            <option value="105">105</option>
-                            <option value="201">201</option>
-                            <option value="202">202</option>
-                            <option value="203">203</option>
-                            <option value="204">204</option>
-                            <option value="205">205</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="payment-status">Payment Status</label>
-                        <select id="payment-status" name="payment-status" required>
-                            <option value="">Select Payment Status</option>
-                            <option value="paid">Paid</option>
-                            <option value="pending">Pending</option>
-                            <option value="cancelled">Cancelled</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="total-amount">Total Amount</label>
-                        <input type="number" id="total-amount" name="total-amount" min="0" step="0.01"
-                            placeholder="Enter total amount" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="special-offers">Special Offers / Discounts</label>
-                        <input type="text" id="special-offers" name="special-offers"
-                            placeholder="Enter any special offers or discounts">
-                    </div>
-                    <div class="form-group">
-                        <label for="advance">Advance / Deposit Amount</label>
-                        <input type="number" id="advance" name="advance" min="0" step="0.01"
-                            placeholder="Enter advance amount">
-                    </div>
-
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="promo-code">Promo Code</label>
-                        <input type="text" id="promo-code" name="promo-code" placeholder="Enter promo code">
-                    </div>
-                    <div class="form-group">
-                        <label for="payment-method">Payment Method</label>
-                        <select id="payment-method" name="payment-method" required>
-                            <option value="">Select Payment Method</option>
-                            <option value="credit-card">Credit Card</option>
-                            <option value="debit-card">Debit Card</option>
-                            <option value="cash">Cash</option>
-                            <option value="bank-transfer">Bank Transfer</option>
-                            <option value="mobile-payment">Mobile Payment</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="payment-details">Card Details / Transaction ID</label>
-                        <input type="text" id="payment-details" name="payment-details"
-                            placeholder="Enter payment details">
-                    </div>
-                </div>
-                <!-- </div> -->
-
-                <!-- Special Requests -->
-                <!-- <div class="form-section"> -->
-                <!-- <h3>Special Requests</h3> -->
-                <div class="from-row">
-                    <div class="form-group">
-                        <label for="special-requests">Special Requests</label>
-                        <textarea id="special-requests" name="special-requests"
-                            placeholder="Enter any special requests"></textarea>
-                    </div>
-                </div>
-
-                <!-- </div> -->
-
-                <!-- Submit Button -->
-                <div class="form-row">
-                    <!-- <div class="form-group"> -->
-                    <button type="submit" class="submit-button">Create Booking</button>
-                    <!-- </div> -->
-                </div>
-            </form>
+            </div>
         </section>
     </main>
 
@@ -511,8 +412,47 @@
         </div>
     </footer>
 
+    <!-- Modal Popup Structure -->
+    <div id="booking-modal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <span class="close-button" aria-label="Close">&times;</span>
+            <h2>Booking Details</h2>
+            <div class="modal-body">
+                <div class="modal-row">
+                    <strong>Booking ID</strong>
+                    <span id="modal-booking-id"></span>
+                </div>
+                <div class="modal-row">
+                    <strong>Customer Name</strong>
+                    <span id="modal-customer-name"></span>
+                </div>
+                <div class="modal-row">
+                    <strong>Room</strong>
+                    <span id="modal-room"></span>
+                </div>
+                <div class="modal-row">
+                    <strong>Status</strong>
+                    <span id="modal-status"></span>
+                </div>
+                <div class="modal-row">
+                    <strong>Check-in</strong>
+                    <span id="modal-checkin"></span>
+                </div>
+                <div class="modal-row">
+                    <strong>Check-out</strong>
+                    <span id="modal-checkout"></span>
+                </div>
+                
+            </div>
+            <hr>
+            <div class="modal-footer">
+                <a href="#" id="view-more-link" target="_blank">View More</a>
+            </div>
+        </div>
+    </div>
+
     <script src="../js/scripts.js"></script>
-    <script src="../js/booking.js"></script>
+    <script src="../js/booking-manage.js"></script>
 </body>
 
 </html>

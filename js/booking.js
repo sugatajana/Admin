@@ -45,6 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }));
 
+    // check for query param bookingId and load booking details if present
+    const urlParams = new URLSearchParams(window.location.search);
+    const bookingId = urlParams.get('bookingId');
+    if (bookingId) {
+        loadBookingDetails(bookingId);
+        return;
+    }
+
     // Handle form submission
 
     const form = document.querySelector('.new-booking-form');
@@ -81,4 +89,42 @@ scrollContainer.addEventListener("scroll", () => {
     });
 });
 
-
+loadBookingDetails = (bookingId) => {
+    // Simulate fetching booking details based on bookingId
+    const bookingDetails = {
+        id: bookingId,
+        customerName: "John Doe",
+        dateOfBirth: "15-05-1985",
+        customerType: "business",
+        businessName: "",
+        businessTaxId: "",
+        roomType: "deluxe",
+        checkInDate: "25-10-2025",
+        checkOutDate: "27-10-2025",
+        specialRequests: "Late check-in",
+        businessTaxId: "123456789",
+        totalAmount: 500.00,
+    };
+    // Populate form fields with booking details
+    document.getElementById('customer-name').value = bookingDetails.customerName;
+    document.getElementById('dateofbirth').value = bookingDetails.dateOfBirth;
+    document.querySelector(`input[name="customer-type"][value="${bookingDetails.customerType}"]`).checked = true;
+    if (bookingDetails.customerType === 'business') {
+        document.querySelector('.business-details').style.display = 'flex';
+        document.getElementById('business-name').value = bookingDetails.businessName;
+        // document.getElementById('business-tax-id').value = bookingDetails.businessTaxId;
+    }
+    document.getElementById('room-type').value = bookingDetails.roomType;
+    document.getElementById('check-in-date').value = bookingDetails.checkInDate;
+    document.getElementById('check-out-date').value = bookingDetails.checkOutDate;
+    document.getElementById('special-requests').value = bookingDetails.specialRequests;
+    // Set datepickers
+    $(document.getElementById('dateofbirth')).datepicker('setDate', bookingDetails.dateOfBirth);
+    $(document.getElementById('check-in-date')).datepicker('setDate', bookingDetails.checkInDate);
+    $(document.getElementById('check-out-date')).datepicker('setDate', bookingDetails.checkOutDate);
+    document.getElementById('total-amount').value = bookingDetails.totalAmount;
+    // Change form title
+    document.querySelector('h2').textContent = `Edit Booking Details`;
+    // Change submit button text
+    document.querySelector('.new-booking-form button[type="submit"]').textContent = 'Update Booking';
+}
