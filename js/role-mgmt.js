@@ -52,3 +52,32 @@ document.querySelectorAll('.permission-card').forEach(item => {
         });
     });
 });
+
+document.getElementById('roleForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+    const roleName = document.getElementById('roleName').value.trim();
+    const roleDescription = document.getElementById('roleDescription').value.trim();
+    const status = document.getElementById('roleStatus').checked;
+    if (!roleName) {
+        alert('Role name is required.');
+        return;
+    }
+    if (bookingPermissions.length === 0) {
+        alert('Please select at least one permission.');
+        return;
+    }
+    const roleData = {
+        roleName: roleName,
+        roleDescription: roleDescription,
+        permissions: bookingPermissions
+    };
+    console.log('Submitting role data:', roleData);
+    // Here you would typically send roleData to the server via AJAX
+    alert('Role submitted successfully!');
+    // Reset form
+    document.getElementById('roleForm').reset();
+    bookingPermissions.length = 0;
+    document.querySelectorAll('.permission-checkbox').forEach(cb => cb.checked = false);
+    document.querySelectorAll('.select-all-checkbox').forEach(cb => {cb.checked = false; cb.indeterminate = false;
+    });
+});
