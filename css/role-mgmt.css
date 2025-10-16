@@ -1,0 +1,228 @@
+/* Employee Role Management Form Styles */
+
+.form-group {
+    flex: 1 1 calc(33.33% - 1rem);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    /* Add spacing between form elements */
+}
+
+label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+input,
+select,
+textarea {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #007BFF;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.submit-button {
+    padding: 0.75rem;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    /* height: 24px; */
+}
+
+.toggle-input {
+    display: none;
+}
+
+.toggle-label {
+    display: block;
+    width: 60px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-label.active {
+    background-color: #4f46e5;
+}
+
+.toggle-input:checked+.toggle-label::after {
+    left: 32px;
+}
+
+.toggle-label::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: left 0.3s ease;
+}
+
+/* Updated style for horizontal row */
+.form-divider {
+    border: none;
+    border-top: 1px solid #ccc;
+    /* Light color to match other components */
+    margin: 1rem 0;
+}
+
+
+/* Approval card css */
+.permission-card {
+    background: #fff;
+    border: 1px solid #e5e8ef;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.permission-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F8FAFC;
+    border-bottom: 1px solid #e0e6ef;
+    padding: 1rem 1rem;
+}
+
+.permission-card-header h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.select-all {
+    font-size: 13px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.permissions-list {
+    padding: 1rem;
+    display: flex;
+    /* gap: 20px; */
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.permission-item {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: background 0.2s ease;
+    width: 30rem;
+}
+
+.permission-item:hover {
+    background-color: #f9f9f9;
+}
+
+.permission-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.permission-description {
+    font-size: 12px;
+    color: #777;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 38px;
+    height: 20px;
+    margin-bottom: 0.15rem;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+input:checked+.slider {
+    background-color: #4f46e5;
+}
+
+input:checked+.slider:before {
+    transform: translateX(18px);
+}
+
+.divider{
+    width: 1px;
+    background-color: #e0e6ef;
+    /* margin: 0 20px; */
+}
+
+@media (max-width: 600px) {
+    .role-form button {
+        width: 100%;
+    }
+
+    .role-form .form-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

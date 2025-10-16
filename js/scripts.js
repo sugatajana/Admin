@@ -19,7 +19,7 @@
 //   const role = document.getElementById('role').value;
 //   document.getElementById('error-role').textContent = role ? '' : 'Select a user role.';
 //   valid = valid && !!role;
-  // Status validation
+// Status validation
 //   const status = document.getElementById('status').value;
 //   document.getElementById('error-status').textContent = status ? '' : 'Select a status.';
 //   valid = valid && !!status;
@@ -32,18 +32,18 @@
 const dropdown = document.querySelector('.user-dropdown');
 const profile = document.querySelector('.user-profile');
 profile.addEventListener('click', () => {
-  dropdown.classList.toggle('open');
+    dropdown.classList.toggle('open');
 });
 
 
 // Close dropdown when clicking outside
 document.addEventListener('click', (e) => {
-  if (dropdown.classList.contains('open')) {
-    // If click is NOT inside dropdown or profile, close it
-    if (!dropdown.contains(e.target) && !profile.contains(e.target)) {
-      dropdown.classList.remove('open');
+    if (dropdown.classList.contains('open')) {
+        // If click is NOT inside dropdown or profile, close it
+        if (!dropdown.contains(e.target) && !profile.contains(e.target)) {
+            dropdown.classList.remove('open');
+        }
     }
-  }
 });
 
 // Add current year to footer
@@ -51,21 +51,21 @@ document.querySelector('.currentYear').textContent = new Date().getFullYear();
 
 // Add current time with seconds to footer every second 24 hour format
 setInterval(() => {
-  const now = new Date();
-  const timeString = now.toLocaleTimeString('en-GB', { hour12: false });
-  document.querySelector('.currentTime').textContent = timeString;
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('en-GB', { hour12: false });
+    document.querySelector('.currentTime').textContent = timeString;
 }, 1000);
 
 
-document.querySelectorAll('.submenu-toggle').forEach(function(toggle) {
-    toggle.addEventListener('click', function(e) {
+document.querySelectorAll('.submenu-toggle').forEach(function (toggle) {
+    toggle.addEventListener('click', function (e) {
         e.preventDefault();
         const parent = this.closest('.has-submenu');
         const submenu = parent.querySelector('.submenu');
         const isOpen = parent.classList.contains('open');
 
         // Close all other open submenus
-        document.querySelectorAll('.has-submenu.open').forEach(function(openItem) {
+        document.querySelectorAll('.has-submenu.open').forEach(function (openItem) {
             if (openItem !== parent) {
                 openItem.classList.remove('open');
                 openItem.querySelector('.submenu').setAttribute('aria-hidden', 'true');
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('mouseleave', () => {
             tooltip.style.display = 'none';
         });
-    }); 
+    });
 
     const quickMenu = document.querySelector('.quick-menu');
     const quickMenuButton = document.querySelector('.quick-menu-button');
@@ -193,6 +193,13 @@ document.addEventListener('DOMContentLoaded', () => {
             quickMenuList.setAttribute('aria-hidden', true);
         }
     });
+});
+
+const toggle = document.getElementById('roleStatus');
+
+toggle.addEventListener('change', function () {
+    const label = this.parentElement.querySelector('.toggle-label');
+    label.classList.toggle('active', this.checked); // add/remove active class
 });
 
 function OpenConfirmModal() {

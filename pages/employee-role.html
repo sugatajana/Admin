@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Dashboard</title>
+    <!-- jQuery UI CSS for datepicker -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/role-mgmt.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- jQuery and jQuery UI for datepicker -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="inner-header">
+            <div class="brand"></div>
+            <h1>Hotel & Restaurant ERP</h1>
+            <form class="search-form" role="search">
+                <img src="../assets/icons/search.svg" alt="search icon" class="search-icon">
+                <input type="search" placeholder="Search..." name="query" aria-label="Search">
+            </form>
+            <div class="user">
+                <div class="user-profile">
+                    <span class="user-name">SJ</span>
+                </div>
+                <div class="user-info">
+                    <span class="user-fullname">Super Admin</span>
+                    <span class="user-role">Administrator</span>
+                </div>
+            </div>
+
+            <div class="notification">
+                <span class="notification-icon">&#128276;</span>
+                <span class="notification-count">3</span>
+            </div>
+        </div>
+        <ul class="user-dropdown">
+            <li><span><img src="../assets/icons/person.svg" alt="person"><a href="#">Profile</a></span></li>
+            <li><span><img src="../assets/icons/settings.svg" alt="settings"><a href="#">Settings</a></span></li>
+            <li><span><img src="../assets/icons/power.svg" alt="power"><a href="#">Logout</a></span></li>
+        </ul>
+    </header>
+
+    <main class="container">
+        <aside class="sidebar">
+            <button class="sidebar-toggle" aria-label="Toggle Sidebar">
+                <span class="hamburger-icon">
+                    <img src="../assets/icons/hamburger.svg" alt="Toggle Sidebar">
+                </span>
+            </button>
+            <ul>
+                <li>
+                    <a data-menu="Dashboard" href="./index.html"><img src="../assets/icons/home.svg"
+                            alt="Dashboard" /><span class="submenu-text">Dashboard</span></a>
+                </li>
+                <li class="has-submenu">
+                    <button class="submenu-toggle" aria-expanded="false" aria-controls="submenu-bookings"
+                        data-menu="Bookings">
+                        <span><img src="../assets/icons/bookings.svg" alt="Bookings" /></span>
+                        <span class="submenu-text">Bookings</span>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <ul class="submenu" id="submenu-bookings" aria-hidden="true">
+                        <li><a href="./booking.html"><span class="submenu-text">New Booking</span></a></li>
+                        <li><a href="./booking-manage.html"><span class="submenu-text">Manage Bookings</span></a></li>
+                        <li><a href="./calendar.html"><span class="submenu-text">Calendar</span></a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <button class="submenu-toggle" aria-expanded="false" aria-controls="submenu-rooms"
+                        data-menu="Rooms">
+                        <span><img src="../assets/icons/rooms.svg" alt="Rooms" /></span>
+                        <span class="submenu-text">Rooms</span>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <ul class="submenu" id="submenu-rooms" aria-hidden="true">
+                        <li><a href="#room-list"><span class="submenu-text">Room List</span></a></li>
+                        <li><a href="#room-types"><span class="submenu-text">Room Types</span></a></li>
+                        <li><a href="#room-status"><span class="submenu-text">Room Status</span></a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <button class="submenu-toggle" aria-expanded="false" aria-controls="submenu-restaurant"
+                        data-menu="Restaurant">
+                        <span><img src="../assets/icons/restaurant.svg" alt="Restaurant" /></span>
+                        <span class="submenu-text">Restaurant</span>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <ul class="submenu" id="submenu-restaurant" aria-hidden="true">
+                        <li><a href="#menu-management"><span class="submenu-text">Menu Management</span></a></li>
+                        <li><a href="#orders"><span class="submenu-text">Orders</span></a></li>
+                        <li><a href="#table-reservation"><span class="submenu-text">Table Reservation</span></a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <button class="submenu-toggle" aria-expanded="false" aria-controls="submenu-inventory"
+                        data-menu="Inventory">
+                        <span><img src="../assets/icons/inventory.svg" alt="Inventory" /></span>
+                        <span class="submenu-text">Inventory</span>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <ul class="submenu" id="submenu-inventory" aria-hidden="true">
+                        <li><a href="#stock-list"><span class="submenu-text">Stock List</span></a></li>
+                        <li><a href="#add-stock"><span class="submenu-text">Add Stock</span></a></li>
+                        <li><a href="#stock-report"><span class="submenu-text">Stock Report</span></a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <button class="submenu-toggle" aria-expanded="false" aria-controls="submenu-employees"
+                        data-menu="Employees">
+                        <span><img src="../assets/icons/employees.svg" alt="Employees" /></span>
+                        <span class="submenu-text">Employees</span>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <ul class="submenu" id="submenu-employees" aria-hidden="true">
+                        <li><a href="#employee-list"><span class="submenu-text">Employee List</span></a></li>
+                        <li><a href="#attendance"><span class="submenu-text">Attendance</span></a></li>
+                        <li><a href="#payroll"><span class="submenu-text">Payroll</span></a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <button class="submenu-toggle" aria-expanded="false" aria-controls="submenu-finance"
+                        data-menu="Finance">
+                        <span><img src="../assets/icons/finance.svg" alt="Finance" /></span>
+                        <span class="submenu-text">Finance</span>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <ul class="submenu" id="submenu-finance" aria-hidden="true">
+                        <li><a href="#invoices"><span class="submenu-text">Invoices</span></a></li>
+                        <li><a href="#payments"><span class="submenu-text">Payments</span></a></li>
+                        <li><a href="#expenses"><span class="submenu-text">Expenses</span></a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <button class="submenu-toggle" aria-expanded="false" aria-controls="submenu-suppliers"
+                        data-menu="Suppliers">
+                        <span><img src="../assets/icons/suppliers.svg" alt="Suppliers" /></span>
+                        <span class="submenu-text">Suppliers</span>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <ul class="submenu" id="submenu-suppliers" aria-hidden="true">
+                        <li><a href="#supplier-list"><span class="submenu-text">Supplier List</span></a></li>
+                        <li><a href="#add-supplier"><span class="submenu-text">Add Supplier</span></a></li>
+                        <li><a href="#supplier-orders"><span class="submenu-text">Supplier Orders</span></a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <button class="submenu-toggle" aria-expanded="false" aria-controls="submenu-customers"
+                        data-menu="Customers">
+                        <span><img src="../assets/icons/customers.svg" alt="Customers" /></span>
+                        <span class="submenu-text">Customers</span>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <ul class="submenu" id="submenu-customers" aria-hidden="true">
+                        <li><a href="#customer-list"><span class="submenu-text">Customer List</span></a></li>
+                        <li><a href="#add-customer"><span class="submenu-text">Add Customer</span></a></li>
+                        <li><a href="#customer-feedback"><span class="submenu-text">Feedback</span></a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <button class="submenu-toggle" aria-expanded="false" aria-controls="submenu-reports"
+                        data-menu="Reports">
+                        <span><img src="../assets/icons/reports.svg" alt="Reports" /></span>
+                        <span class="submenu-text">Reports</span>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <ul class="submenu" id="submenu-reports" aria-hidden="true">
+                        <li><a href="#sales-report"><span class="submenu-text">Sales Report</span></a></li>
+                        <li><a href="#occupancy-report"><span class="submenu-text">Occupancy Report</span></a></li>
+                        <li><a href="#finance-report"><span class="submenu-text">Finance Report</span></a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <button class="submenu-toggle" aria-expanded="false" aria-controls="submenu-tasks"
+                        data-menu="Tasks">
+                        <span><img src="../assets/icons/tasks.svg" alt="Tasks" /></span>
+                        <span class="submenu-text">Tasks</span>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <ul class="submenu" id="submenu-tasks" aria-hidden="true">
+                        <li><a href="#task-list"><span class="submenu-text">Task List</span></a></li>
+                        <li><a href="#assign-task"><span class="submenu-text">Assign Task</span></a></li>
+                        <li><a href="#completed-tasks"><span class="submenu-text">Completed Tasks</span></a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <button class="submenu-toggle" aria-expanded="false" aria-controls="submenu-settings"
+                        data-menu="Settings">
+                        <span><img src="../assets/icons/settings.svg" alt="Settings" /></span>
+                        <span class="submenu-text">Settings</span>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <ul class="submenu" id="submenu-settings" aria-hidden="true">
+                        <li><a href="./employee-role.html"><span class="submenu-text">Role Settings</span></a></li>
+                        <li><a href="#profile-settings"><span class="submenu-text">Profile Settings</span></a></li>
+                        <li><a href="#system-settings"><span class="submenu-text">System Settings</span></a></li>
+                        <li><a href="#notification-settings"><span class="submenu-text">Notification Settings</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- <li><a href="#help"><img src="../assets/icons/help.svg" alt="Help" />Help</a></li> -->
+                <li>
+                    <a data-menu="Help" href="#help"><img src="../assets/icons/help.svg" alt="Help" /><span
+                            class="submenu-text">Help</span></a>
+                </li>
+            </ul>
+        </aside>
+
+        <section class="content">
+            <div class="role-mgmt-container">
+                <h2>Create New Role</h2>
+                <form id="roleForm" class="role-mgmt-form" aria-label="Create New Role Form">
+                    <div class="form-group">
+                        <label for="roleName">Role Name</label>
+                        <input type="text" id="roleName" name="roleName" required aria-required="true"
+                            aria-describedby="roleNameDesc"
+                            placeholder="Enter the name of the role (e.g., Manager, Staff)">
+                    </div>
+                    <div class="form-group">
+                        <label for="roleDescription">Role Description</label>
+                        <textarea placeholder="Enter a brief description of the role and its responsibilities"
+                            id="roleDescription" name="roleDescription" rows="4"
+                            aria-describedby="roleDescDesc"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="roleStatus">Status</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" checked class="toggle-input" id="roleStatus" name="roleStatus">
+                            <label for="roleStatus" class="toggle-label active">
+                                <!-- <span class="toggle-inner"></span> -->
+                                <!-- <span class="toggle-switch"></span> -->
+                            </label>
+                        </div>
+                    </div>
+                    <div class="permission-card">
+                        <div class="permission-card-header">
+                            <h3>Booking Management</h3>
+                            <label class="select-all">
+                                Select All
+                                <label class="switch">
+                                    <input type="checkbox" class="select-all-checkbox"
+                                        aria-label="Select All Permissions">
+                                    <span class="slider"></span>
+                                </label>
+                            </label>
+                        </div>
+                        <div class="permissions-list">
+                            <div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Create Booking</div>
+                                        <div class="permission-description">Can create new bookings for customers
+                                            manually or through requests.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="CreateBooking" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Edit Booking</div>
+                                        <div class="permission-description">Can modify existing booking
+                                            details such as dates, rooms, or guests.
+                                        </div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="EditBooking" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Cancel Booking</div>
+                                        <div class="permission-description">Can cancel confirmed bookings
+                                            before check-in.
+                                        </div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="CancelBooking" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                            <div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">View Booking Details</div>
+                                        <div class="permission-description">Can view complete booking
+                                            and customer information.
+                                        </div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ViewBooking" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">View Booking Reports</div>
+                                        <div class="permission-description">Can view and export booking reports for
+                                            analysis.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ViewBookingReports" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Approve Refunds</div>
+                                        <div class="permission-description">Can approve refund requests for cancelled
+                                            bookings.
+                                        </div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ApproveRefunds" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--More Permissions-->
+                    <div class="permission-card">
+                        <div class="permission-card-header">
+                            <h3>Room Management</h3>
+                            <label class="select-all">
+                                Select All
+                                <label class="switch">
+                                    <input type="checkbox" class="select-all-checkbox"
+                                        aria-label="Select All Permissions">
+                                    <span class="slider"></span>
+                                </label>
+                            </label>
+                        </div>
+                        <div class="permissions-list">
+                            <div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Create Room</div>
+                                        <div class="permission-description">Can add new rooms with details such as number, type, and rate.
+                                        </div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="CreateRoom" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Manage Rooms</div>
+                                        <div class="permission-description">Can edit room details, delete rooms, or 
+                                            update room details.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageRoom" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                            <div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Manage Room Access Cards</div>
+                                        <div class="permission-description">Can issue, reprogram, or deactivate key cards.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageAccessCard" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Manage Room Maintenance</div>
+                                        <div class="permission-description">Can mark rooms for maintenance and coordinate with housekeeping.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageMaintenance" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="permission-card">
+                        <div class="permission-card-header">
+                            <h3>Restaurant Management</h3>
+                            <label class="select-all">
+                                Select All
+                                <label class="switch">
+                                    <input type="checkbox" class="select-all-checkbox"
+                                        aria-label="Select All Permissions">
+                                    <span class="slider"></span>
+                                </label>
+                            </label>
+                        </div>
+                        <div class="permissions-list">
+                            <div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Create Menu Items</div>
+                                        <div class="permission-description">Can add new food or beverage items to the restaurant menu.
+                                        </div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="CreateItem" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Manage Menu Items</div>
+                                        <div class="permission-description">Can edit, update prices, hide, or delete menu items.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageItem" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Manage Orders</div>
+                                        <div class="permission-description">Can create, modify, or cancel customer orders.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageOrder" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Table Management</div>
+                                        <div class="permission-description">Can assign tables, update table status, or merge/split tables.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageTable" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                            <div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Approve Discounts & Offers</div>
+                                        <div class="permission-description">Can approve and apply discounts or promotional offers.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageDiscounts" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Manage Billing & Payments</div>
+                                        <div class="permission-description">Can generate, edit, or settle restaurant bills.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageBilling" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">View Restaurant Reports</div>
+                                        <div class="permission-description">Can view sales, order, and staff performance reports.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ViewRestaurantReport" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="permission-card">
+                        <div class="permission-card-header">
+                            <h3>Inventory Management</h3>
+                            <label class="select-all">
+                                Select All
+                                <label class="switch">
+                                    <input type="checkbox" class="select-all-checkbox"
+                                        aria-label="Select All Permissions">
+                                    <span class="slider"></span>
+                                </label>
+                            </label>
+                        </div>
+                        <div class="permissions-list">
+                            <div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Add Inventory Items</div>
+                                        <div class="permission-description">Can add new stock items to the inventory database.
+                                        </div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="CreateInventory" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Manage Inventory Items</div>
+                                        <div class="permission-description">Can edit details, update quantities, or delete items.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageInventory" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Stock In / Stock Out Management</div>
+                                        <div class="permission-description">Can record incoming and outgoing stock transactions.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageStocks" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">View Inventory Levels</div>
+                                        <div class="permission-description">Can view current stock quantities and low-stock alerts.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageTable" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Approve Purchase Requests</div>
+                                        <div class="permission-description">Can review and approve purchase or restock requests.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageTable" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                            <div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Approve Discounts & Offers</div>
+                                        <div class="permission-description">Can approve and apply discounts or promotional offers.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageDiscounts" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Manage Billing & Payments</div>
+                                        <div class="permission-description">Can generate, edit, or settle restaurant bills.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageBilling" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">View Restaurant Reports</div>
+                                        <div class="permission-description">Can view sales, order, and staff performance reports.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ViewRestaurantReport" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Manage Kitchen Operations</div>
+                                        <div class="permission-description">Can update order status and monitor kitchen queue.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageKitchenOps" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Manage Suppliers</div>
+                                        <div class="permission-description">Can add, update, or remove supplier details.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageKitchenOps" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="permission-card">
+                        <div class="permission-card-header">
+                            <h3>Employee Management</h3>
+                            <label class="select-all">
+                                Select All
+                                <label class="switch">
+                                    <input type="checkbox" class="select-all-checkbox"
+                                        aria-label="Select All Permissions">
+                                    <span class="slider"></span>
+                                </label>
+                            </label>
+                        </div>
+                        <div class="permissions-list">
+                            <div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Add Employee</div>
+                                        <div class="permission-description">Can add new employee profiles with personal and job details.
+                                        </div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="CreateEmployee" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Manage Employee</div>
+                                        <div class="permission-description">Can modify employee profiles with personal and job details.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageInventory" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Approve Leave Requests</div>
+                                        <div class="permission-description">Can approve or reject employee leave applications.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageStocks" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">View Attendance Records</div>
+                                        <div class="permission-description">Can view employee attendance logs and absences.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageTable" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Generate Attendance Reports</div>
+                                        <div class="permission-description">Can generate daily, monthly, or custom attendance reports.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageTable" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                            <div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Generate Payroll</div>
+                                        <div class="permission-description">Can calculate and process monthly salary based on attendance.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageDiscounts" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">View Payroll Reports</div>
+                                        <div class="permission-description">Can view and export salary statements, tax, and deduction reports.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageBilling" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Manage Salary Structure</div>
+                                        <div class="permission-description">Can define or update components like Basic, HRA, Incentives etc.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ViewRestaurantReport" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Approve Payroll Disbursement</div>
+                                        <div class="permission-description">Can approve or release salaries for payment.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageKitchenOps" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Manage Roles & Access</div>
+                                        <div class="permission-description">Can assign permissions or change access levels for employees.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageKitchenOps" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="permission-card">
+                        <div class="permission-card-header">
+                            <h3>Finance Management</h3>
+                            <label class="select-all">
+                                Select All
+                                <label class="switch">
+                                    <input type="checkbox" class="select-all-checkbox"
+                                        aria-label="Select All Permissions">
+                                    <span class="slider"></span>
+                                </label>
+                            </label>
+                        </div>
+                        <div class="permissions-list">
+                            <div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Create Invoice</div>
+                                        <div class="permission-description">Can create new invoices for bookings, services, or sales.
+                                        </div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="CreateEmployee" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Edit Invoice</div>
+                                        <div class="permission-description">Can modify invoice details before approval.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageInventory" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Approve Invoice</div>
+                                        <div class="permission-description">Can review and approve invoices for release or posting.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageStocks" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">View & Download Invoice</div>
+                                        <div class="permission-description">Can view or export invoices in PDF or other formats.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageTable" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Delete Invoice</div>
+                                        <div class="permission-description">Can delete invoices that are pending or created by mistake.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageTable" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Configure Tax & Finance Settings</div>
+                                        <div class="permission-description">Can manage tax rules and invoice templates.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageDiscounts" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Manage Expense Categories</div>
+                                        <div class="permission-description">Can create or update categories like Travel, Utilities, or Supplies.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageKitchenOps" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                            <div>
+                                
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Record Payment</div>
+                                        <div class="permission-description">Can record customer or vendor payments against invoices or bookings.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageBilling" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Approve Payments</div>
+                                        <div class="permission-description">Can authorize and finalize payment transactions.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ViewRestaurantReport" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">View Payment Reports</div>
+                                        <div class="permission-description">Can view or export daily and monthly payment summaries.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageKitchenOps" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Add Expense Entry</div>
+                                        <div class="permission-description">Can record organizational or departmental expenses.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageKitchenOps" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Edit Expense</div>
+                                        <div class="permission-description">Can modify expense details before approval.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageKitchenOps" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Approve Expense</div>
+                                        <div class="permission-description">Can review and approve submitted expense claims.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageKitchenOps" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">View Expense Reports</div>
+                                        <div class="permission-description">Can view and analyze expense trends and summaries.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageKitchenOps" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="permission-card">
+                        <div class="permission-card-header">
+                            <h3>Customer Management</h3>
+                            <label class="select-all">
+                                Select All
+                                <label class="switch">
+                                    <input type="checkbox" class="select-all-checkbox"
+                                        aria-label="Select All Permissions">
+                                    <span class="slider"></span>
+                                </label>
+                            </label>
+                        </div>
+                        <div class="permissions-list">
+                            <div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">View Customer Records</div>
+                                        <div class="permission-description">Can view complete customer profiles and stay history.
+                                        </div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="CreateItem" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">View Booking History</div>
+                                        <div class="permission-description">Can access all past and current bookings made by a customer.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageItem" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Manage Feedback & Reviews</div>
+                                        <div class="permission-description">Can view and respond to customer feedback or review logs.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageOrder" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                            <div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Customer Stay Insights</div>
+                                        <div class="permission-description">Can view insights such as total stays, preferred rooms etc.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageTable" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Generate Customer Reports</div>
+                                        <div class="permission-description">Can generate reports on customer demographics, visits, and retention.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageDiscounts" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="permission-item">
+                                    <div>
+                                        <div class="permission-title">Export Customer Data</div>
+                                        <div class="permission-description">Can export customer analytics and reports in Excel, PDF, or CSV format.</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" value="ManageBilling" class="permission-checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--More Permissions End-->
+                    <div class="form-actions">
+                        <button type="submit" class="submit-button">Create Role</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Quick Menu Access Button -->
+    <div class="quick-menu d-none">
+        <button class="quick-menu-button" aria-label="Quick Menu">
+            <img src="../assets/icons/menu.svg" alt="Quick Menu">
+        </button>
+        <ul class="quick-menu-list" aria-hidden="true">
+            <!-- <li><span><img src="../../assets/icons/home.svg" alt="home"><a href="#dashboard">Dashboard</a></span></li> -->
+            <li><span><img src="../assets/icons/bookings.svg" alt="bookings"><a href="#bookings">Bookings</a></span>
+            </li>
+            <li><span><img src="../assets/icons/customers.svg" alt="customers"><a href="#customers">Customers</a></span>
+            </li>
+            <li><span><img src="../assets/icons/rooms.svg" alt="rooms"><a href="#rooms">Rooms</a></span></li>
+            <!-- <li><span><img src="../../assets/icons/inventory.svg" alt="inventory"><a href="#inventory">Inventory</a></span></li> -->
+        </ul>
+    </div>
+
+    <footer>
+        <div class="inner-footer">
+            <div class="start">
+                <span class="appVersion">v.1.2.3</span>
+            </div>
+            <div class="center">
+                <span class="currentTime"></span>
+            </div>
+            <div class="end">
+                &copy; <span class="currentYear"></span> Copyright Reserved
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loader will be dynamically added here by JavaScript -->
+
+    <script src="../js/scripts.js"></script>
+
+    <script src="../js/role-mgmt.js"></script>
+    <!-- <script src="../js/booking-manage.js"></script> -->
+</body>
+
+</html>
